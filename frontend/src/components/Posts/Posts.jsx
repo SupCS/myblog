@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './Posts.module.css';
+import Modal from '../Modal/Modal';
 
 function Posts() {
     const [posts, setPosts] = useState([]);
+    const [selectedPost, setSelectedPost] = useState(null);
 
     useEffect(() => {
         axios.get('/api/posts/')
@@ -15,16 +17,31 @@ function Posts() {
             });
     }, []);
 
+    const handlePostClick = (post) => {
+        setSelectedPost(post);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedPost(null);
+    };
+
     return (
-        <div className={styles.posts}>
+        <>
+          <div className={styles.postsContainer}>
             {posts.map(post => (
-                <div key={post.id} className={styles.post}>
+                <div key={post.id} className={styles.postCard} onClick={() => handlePostClick(post)}>
                     <h2 className={styles.postTitle}>{post.title}</h2>
-                    <p className={styles.postBody}>{post.body}</p>
-                    <p>Дата: {new Date(post.created_on).toLocaleString()}</p>
+                    <p className={styles.postBody}>{post.body.substring(0, 100)}...</p>
                 </div>
             ))}
-        </div>
+          </div>
+          {selectedPost && (
+              <Modal isOpen={Boolean(selectedPost)} onClose={handleCloseModal}>
+                  <h2>{selectedPost.title}</h2>
+                  <p>{selectedPost.body}</p>
+              </Modal>
+          )}
+        </>
     );
 }
 

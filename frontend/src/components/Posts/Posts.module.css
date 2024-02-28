@@ -16,4 +16,38 @@
 .postBody {
     color: #555;
 }
+
+.postsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+}
   
+.postCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+  
+  .postCard:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+.postTitle {
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+.postBody {
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
