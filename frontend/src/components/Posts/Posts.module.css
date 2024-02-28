@@ -1,0 +1,19 @@
+
+.posts {
+    margin-top: 50px;
+}
+
+.post {
+    border-bottom: 1px solid #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.postTitle {
+    color: #007BFF;
+}
+
+.postBody {
+    color: #555;
+}
+  
